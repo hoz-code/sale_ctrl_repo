@@ -1,0 +1,27 @@
+{
+  "name": "sale_ctrl",
+  "version": "1.0.0",
+  "description": "Control to sales an information",
+  "main": "server.js",
+  "type": "module",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "nodemon server.js"
+  },
+  "author": "hoz-code",
+  "license": "ISC",
+  "keywords": [
+    "CRUD",
+    "sqlite"
+  ],
+  "dependencies": {
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
