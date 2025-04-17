@@ -36,8 +36,11 @@ const tablePrices = () => {
 const tableSales = () => {
     db.run(`CREATE TABLE IF NOT EXISTS sales
         (time NUMERIC NOT NULL,
+        name TEXT NOT NULL,
+        stock INT NOT NULL,
+        price INT NOT NULL,
         fktime NUMERIC,
-        fkcode INT, 
+        fkcode INT,
         FOREIGN KEY(fkcode) REFERENCES products(code),
         FOREIGN KEY(fktime) REFERENCES totalsales(time)
         );`, (err) => {
@@ -61,14 +64,29 @@ const tableTotalSales = () => {
     });
 };
 
+
+
+const justProbeTable = () => {
+    db.run(`CREATE TABLE IF NOT EXISTS justprobetable
+        (id NUMERIC PRIMARY KEY,
+        name TEXT NOT NULL,
+        age NUMERIC)
+        ;`, (err) => {
+        if (!err) {
+            console.log('Table created successfully');
+        } else {
+            console.log(err);
+        }
+    });
+};
+
+//justProbeTable();
 //tableProducts();
 //tableTotalSales();
 
 //tableStocks();
 //tablePrices();
 //tableSales();
-
-
 
 
 

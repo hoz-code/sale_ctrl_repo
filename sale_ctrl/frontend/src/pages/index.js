@@ -1,43 +1,61 @@
 import { getAllTags } from './getElements.js';
 import { htmlFunctions } from './setFunctions.js';
 import { htmlDOMFunctions } from './setFunctionDOM.js';
+import { cssFunctions } from './cssFunctions.js';
 //import { htmlgetDOMData } from './setFunctionGetDOMinfo.js'
 
 const htmlDOMFunction = htmlDOMFunctions
 
-
+const cssFunction = cssFunctions
 const htmlElements = getAllTags();
 
 const htmlFunction = htmlFunctions
 
 const now = new Date()
-//alert(now)
-//alert(now.toISOString())
+
+const populateItemTable = async () => {
+
+    const data = await htmlFunction.selectAllRows();
+
+    htmlElements['available-body-table-products'].innerHTML = ""
+    //console.log(data)
+    htmlDOMFunction.populateTable(data, getAllTags())
+    console.log('populateItemTable')
+}
+
+
+htmlElements['body'].onload = async () => {
+    populateItemTable()
+}
+
 
 
 // Fetch Functions
 htmlElements['button-search'].onclick = async () => {
     const data = await htmlFunction.selectRowByCode(getAllTags());
-    console.log(data)
     htmlDOMFunction.showSearch(data, getAllTags())
 }
+
+
 htmlElements['button-save'].onclick = () => htmlFunction.createrow(getAllTags());
-htmlElements['button-allRows'].onclick = () => htmlFunction.selectAllRows(getAllTags());
 htmlElements['button-delete'].onclick = () => htmlFunction.deleteRowByCode(getAllTags());
 htmlElements['button-update'].onclick = () => htmlFunction.updateRowByCode(getAllTags());
+
+htmlElements['button-confirm'].onclick = () => {
+    htmlFunction.totalizeSales(getAllTags());
+    setTimeout(() => { htmlDOMFunction.saleclean(getAllTags()) }, 250)
+    setTimeout(() => { populateItemTable() }, 500)
+}
 
 
 
 
 // DOM Functions
-htmlElements['button-insert'].onclick = () => htmlDOMFunction.insertSale(getAllTags());
 htmlElements['button-saleclean'].onclick = () => htmlDOMFunction.saleclean(getAllTags());
 
 
-htmlElements['button-confirm'].onclick = () => htmlFunction.totalizeSales(getAllTags());
-
-
-
+//CSS Function
+htmlElements['search-box'].onkeyup = () => cssFunction.searchFilter()
 
 
 

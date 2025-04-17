@@ -47,37 +47,157 @@ nav {
     border-style: solid;
 }
 
-.left {
-    position: absolute;
-    width: 22.5%;
-    left: 0px;
-    top: 0px;
-    border-right: 1px solid #ccc;
-    padding: 10px;
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
-
-.central {
-    position: relative;
-    width: 50%;
-    top: 10px;
-    left: 25%;
-    float: left;
-    padding-left: 10px;
-}
-
-.right {
-    position: absolute;
-    width: 22.5%;
-    right: 0px;
-    top: 0px;
-    border-left: 1px solid #ccc;
-    padding: 10px;
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
-
 .divChildClasse {
     background-color: aqua;
 }
+
+.body {
+    font-family: 'Roboto';
+}
+
+
+/**************************************** LEFT ***************************/
+
+
+/**************************************** /LEFT ***************************/
+
+
+
+
+/**************************************** CENTER ***************************/
+#search-box {
+    max-width: 100%;
+    font-size: 21px;
+    padding: 10px;
+    border: 3px solid brown;
+    margin-bottom: 5px;
+}
+
+/* table */
+
+.table-avalible-product-container {
+    overflow: auto;
+    height: 400px;
+}
+
+#available-table-products {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px solid #4211c8;
+    font-size: 12px;
+}
+
+.class-available-table-products-header th {
+    color: rgba(180, 246, 169, 0.995);
+    background-color: #024806;
+    text-align: center;
+    padding: 10px;
+}
+
+
+.class-table-row td {
+    padding: 12px;
+    border-bottom: 1px solid #c21d83;
+}
+
+.class-table-row {
+    cursor: pointer;
+    text-align: center;
+}
+
+.class-table-row:hover {
+    background-color: greenyellow;
+}
+
+/**************************************** /CENTER ***************************/
+
+
+
+
+/**************************************** RIGTH ***************************/
+
+.table-sales-product-container {
+    overflow: auto;
+    height: 400px;
+}
+
+#sales-table-products {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px solid #4211c8;
+    font-size: 12px;
+}
+
+.class-sales-table-products-header th {
+    color: rgba(174, 169, 246, 0.995);
+    background-color: #0a0248;
+    text-align: center;
+    padding: 10px;
+}
+
+.table-sales-row td {
+    padding: 4px;
+    border-bottom: 1px solid #c21d83;
+}
+
+.table-sales-row {
+    cursor: pointer;
+    text-align: center;
+}
+
+.table-sales-row:hover {
+    background-color: rgb(185, 188, 255);
+}
+
+.sale-column-four {
+    display: none;
+}
+
+.sale-column-five {
+    display: none;
+}
+
+
+.bk-gr-cl {
+    background-color: #4211c8;
+}
+
+.br-blk-thi {
+    border-color: black;
+    border-style: double;
+}
+
+/*
+.item-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.product-code {
+    width: 20%;
+    background-color: red;
+}
+
+.product-name {
+    width: 20%;
+    background-color: blue;
+}
+
+.product-price {
+    width: 20%;
+    background-color: rgba(180, 246, 169, 0.995);
+}
+
+.product-stock {
+    display: none;
+}
+
+.product-timesale {
+    display: none;
+}
+    */
+
+/**************************************** /RIGTH ***************************/

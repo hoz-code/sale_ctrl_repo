@@ -52,7 +52,7 @@ const htmlFunctions = {
                 throw new Error(`Response status from fetch: ${responsefetch.status}`);
             }
             const json = await responsefetch.json();
-            console.log(json)
+            return json
         }
         catch (error) {
             console.log(error.message);
@@ -97,21 +97,19 @@ const htmlFunctions = {
 
 
     totalizeSales: async (allElements) => {
+        //console.log(reloadTableItem)
         try {
-            console.log(allElements)
             const htmlData = formatDataToFetch.groupSales(allElements)
             const data = JSON.stringify(htmlData);
-            console.log(data)
             const fetchsettings = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: data };
             let responsefetch = await fetch("http://localhost:8080/api/sales/saleconfirmed", fetchsettings);
             if (!responsefetch.ok) {
                 throw new Error(`Response status from fetch: ${responsefetch.status}`);
             }
             const json = await responsefetch.json();
-            console.log(json);
+            console.log(json)
         }
         catch (error) {
-            console.log(error.message);
             //browsermessage.show(error);
         }
     },

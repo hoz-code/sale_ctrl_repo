@@ -66,19 +66,34 @@ const selectDataFromTable = (nameTable) => {
         }
     });
 }
+
+const selectAllDataFromTables = (nameTableOne, nameTableTwo, nameTableThree) => {
+    const statementSQL = `SELECT * FROM ${nameTableOne} INNER JOIN ${nameTableTwo} ON ${nameTableOne}.code = ${nameTableTwo}.fkcode INNER JOIN ${nameTableThree} ON ${nameTableOne}.code = ${nameTableThree}.fkcode;`
+    console.log(statementSQL)
+    db.all(statementSQL, (err, rows) => {
+        if (!err) {
+            console.log(rows);
+        } else {
+            console.log(`Im error ${err.message}`);
+            return;
+        }
+    });
+}
 //printdd();
 
 //dropTable('products');
 //dropTable('totalsales');
-//dropTable('prices');
+//dropTable('sales');
 //sqlite_master();
 //select_columns('stocks');
 //tableProducts();
 //tableStocks()
 //tablePrices()
-//selectDataFromTable('sales')
-//selectDataFromTable('totalsales')
-
+//selectDataFromTable('products')
+//selectDataFromTable('stocks')
+//selectDataFromTable('prices')
+//selectDataFromTable('justProbeTable')
+//selectAllDataFromTables('products', 'stocks', 'prices')
 
 
 // node controllers/devToolsDataBase.js

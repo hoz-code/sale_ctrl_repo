@@ -8,48 +8,74 @@
     <link type="text/css" rel="stylesheet" href="/src/assets/styles/style.css">
 </head>
 
-<body>
-    <div class="left">dfasdfs
+<body class="body" id="body">
+    <div style="display: flex; flex-wrap: nowrap; border-color: blue;">
+        <!-- ********************************************************* LEFT **********************************************************-->
+        <div style="flex: 1; min-width: 25%; border: 1px solid green; box-sizing: border-box; padding: 10px;">
+            <form id='forminfo' action="">
+                <label for="input-code">Code</label>
+                <input type="text" id="input-code" name="input-code" data-column-name="code" data-table-stocks="stocks"
+                    data-column-stocks="fkcode" data-table-prices="prices" data-column-prices="fkcode">
+                <br><br>
+                <label for="input-productname">Product</label>
+                <input type="text" id="input-productname" name="input-productname" data-table-name="products"
+                    data-column-name="name"><br><br>
+                <label for="input-stock">Stock</label>
+                <input type="text" id="input-stock" name="input-stock" data-table-name="stocks"
+                    data-column-name="stock"><br><br>
+                <label for="input-price">Price</label>
+                <input type="text" id="input-price" name="input-price" data-table-name="prices"
+                    data-column-name="price"><br><br>
+            </form>
+
+            <button type="button" id="button-save">Save</button>
+            <button type="button" id="button-search">Search</button>
+            <button type="button" id="button-update">Update</button>
+            <button type="button" id="button-delete">Delete</button><br><br>
+
+        </div>
+        <!-- ********************************************************* CENTER **********************************************************-->
+        <div style="flex: 1; min-width: 40%; border: 1px solid black; box-sizing: border-box; padding: 10px;">
+
+            <input type="text" id="search-box" placeholder="Search for names..">
+            <div class="table-avalible-product-container">
+                <table id="available-table-products">
+                    <thead class="class-available-table-products-header" id="available-table-products-header">
+                        <tr>
+                            <th style="width:5%;">CODIGO</th>
+                            <th style="width:80%;">ARTICULO</th>
+                            <th style="width:5%;">CANTIDAD</th>
+                            <th style="width:5%;">VALOR</th>
+                        </tr>
+                    </thead>
+                    <tbody id="available-body-table-products">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- *********************************************************  RIGHT **********************************************************-->
+        <div style="flex: 1; min-width: 35%; border: 1px solid black; box-sizing: border-box; padding: 10px;">
+
+            <!--<div id="sale-container">Sale Container</div><br>-->
+            <div class="table-sales-product-container">
+                <table id="sales-table-products">
+                    <thead class="class-sales-table-products-header" id="sales-table-products-header">
+                        <tr>
+                            <th style="width:5%;">CODIGO</th>
+                            <th style="width:90%;">ARTICULO</th>
+                            <th style="width:5%;">VALOR</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sales-body-table-products">
+                    </tbody>
+                </table>
+            </div>
+            <span>total: </span><span class="br-blk-thi bk-gr-cl" id="span-totalsale">0</span><br>
+            <button type="button" id="button-confirm">Confirm Sale</button><br><br>
+            <button type="button" id="button-saleclean">Clear Sales</button><br><br><br>
+        </div>
     </div>
-    <div class="central">
-        <form id='forminfo' action="">
-            <label for="code">Code</label>
-            <input type="text" id="input-code" name="input-code" data-column-name="code" data-table-stocks="stocks"
-                data-column-stocks="fkcode" data-table-prices="prices" data-column-prices="fkcode">
-            <br><br>
-            <label for="productname">Product</label>
-            <input type="text" id="input-productname" name="input-productname" data-table-name="products"
-                data-column-name="name"><br><br>
-            <label for="stock">Stock</label>
-            <input type="text" id="input-stock" name="input-stock" data-table-name="stocks"
-                data-column-name="stock"><br><br>
-            <label for="price">Price</label>
-            <input type="text" id="input-price" name="input-price" data-table-name="prices"
-                data-column-name="price"><br><br>
-        </form>
-
-        <button type="button" id="button-save">Save</button>
-        <button type="button" id="button-search">Search</button>
-        <button type="button" id="button-update">Update</button>
-        <button type="button" id="button-delete">Delete</button><br><br>
-
-        <button type="button" id="button-insert">Insert</button><br><br>
-        <button type="button" id="button-confirm">Confirm Sale</button><br><br>
-        <button type="button" id="button-saleclean">Clear Sales</button><br><br><br>
-
-        <button type="button" id="button-allRows">All Rows!!</button><br><br>
-
-
-        <span>code: </span><span id="spancode">sdasdadasd</span><br>
-        <span>product: </span><span id="spanproduct">sdasdadasd</span><br>
-        <span>amount: </span><span id="spanamount">sdasdadasd</span>
-
-        <div id="report"></div>
-    </div>
-    <div id="div-right" class="right">
-        <div id="sale-container">Sale Container</div>
-    </div>
-
     <script type="module" src="/src/pages/index.js"></script>
 </body>
 

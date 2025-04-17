@@ -132,12 +132,18 @@ const sqlActions = {
                         const sqlStatementSale = `INSERT INTO ${dataToCreate[i].nameTable}(
                         ${dataToCreate[i].column_one.name}, 
                         ${dataToCreate[i].column_two.name}, 
-                        ${dataToCreate[i].column_three.name}
-                        ) VALUES(?, ?, ?)`;
+                        ${dataToCreate[i].column_three.name},
+                        ${dataToCreate[i].column_four.name},
+                        ${dataToCreate[i].column_five.name},
+                        ${dataToCreate[i].column_six.name}
+                        ) VALUES(?, ?, ?, ?, ?, ?)`;
                         const sqlValuesSale = [
                             dataToCreate[i].column_one.value,
                             dataToCreate[i].column_two.value,
-                            dataToCreate[i].column_three.value
+                            dataToCreate[i].column_three.value,
+                            dataToCreate[i].column_four.value,
+                            dataToCreate[i].column_five.value,
+                            dataToCreate[i].column_six.value
                         ];
                         db.run(sqlStatementSale, sqlValuesSale, (err) => {
                             if (!err) {
@@ -146,17 +152,29 @@ const sqlActions = {
                             }
                             else {
                                 console.log(`sale row error${err}`)
-                                //sqlAnswer({ "res": "There is some error in insert each sale", "err": `${err}` }, null);
+                                sqlAnswer({ "res": "There is some error in insert each sale", "err": `${err}` }, null);
+                            }
+                        })
+
+                        const sqlStatementUpdateStocks = `UPDATE stocks SET ${dataToCreate[i].column_five.name} = ${dataToCreate[i].column_five.name} - 1 
+                        WHERE  ${dataToCreate[i].column_three.name} = ?;`;
+                        const sqlStatementUpdateStocksValue = [dataToCreate[i].column_three.value]
+                        db.run(sqlStatementUpdateStocks, sqlStatementUpdateStocksValue, (err) => {
+                            if (!err) {
+                                console.log('stock row was update')
+                            } else {
+                                sqlAnswer({ "res": "There is some error in update stock", "err": `${err}` }, null);
                             }
                         })
                     }
-                    //sqlAnswer(null, { "res": "All rows are ok" });
+
                 }
                 else {
                     sqlAnswer({ "res": "There is some error in insert total sales", "err": `${err}` }, null);
                 }
             })
         })
+        sqlAnswer(null, { "res": "All rows are ok" });
     }
 }
 
