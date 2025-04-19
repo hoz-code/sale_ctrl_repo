@@ -1,5 +1,6 @@
 let totalsale = parseInt(0);
-let saleControl = {}
+let totalSaleVisual = 0;
+let saleControlStock = {}
 const currencyFormat = (number) => {
     const currencyFormat = new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP" }).format(number)
     return currencyFormat
@@ -22,9 +23,9 @@ const htmlDOMFunctions = {
             i++;
         }
         htmlElement['span-totalsale'].innerHTML = 0
-        let saleControlClean = Object.entries(saleControl)
+        let saleControlClean = Object.entries(saleControlStock)
         saleControlClean.forEach((key) => {
-            delete saleControl[`${key[0]}`]
+            delete saleControlStock[`${key[0]}`]
         })
     },
 
@@ -34,7 +35,7 @@ const htmlDOMFunctions = {
         for (let i = 0; i < dataFromFetch.length; i++) {
 
             const tableRow = document.createElement("tr")
-            tableRow.className = 'class-table-row'
+            tableRow.className = 'table-light'
 
             const column_one = document.createElement("td")
             column_one.className = 'class-column-one'
@@ -64,16 +65,17 @@ const htmlDOMFunctions = {
         }
 
     },
+
     insertItemFromTable: (codeFromTable, nameFromTable, stockFromTable, priceFromTable, htmlElement) => {
         if (stockFromTable > 0) {
-            if (Object.keys(saleControl).length == 0 || (!([codeFromTable] in saleControl))) {
-                saleControl[codeFromTable] = [stockFromTable];
+            if (Object.keys(saleControlStock).length == 0 || (!([codeFromTable] in saleControlStock))) {
+                saleControlStock[codeFromTable] = [stockFromTable];
             }
             else {
                 console.log('code already exists')
             }
-            if (saleControl[codeFromTable] != 0) {
-                console.log(saleControl[codeFromTable])
+            if (saleControlStock[codeFromTable] != 0) {
+                console.log(saleControlStock[codeFromTable])
 
                 const tr = document.createElement("tr")
                 tr.className = 'table-sales-row'
@@ -88,8 +90,8 @@ const htmlDOMFunctions = {
                 let timeStampNow = Date.now()
 
                 totalsale = totalsale + cost
-
-                htmlElement['span-totalsale'].innerHTML = totalsale
+                totalSaleVisual = currencyFormat(totalsale)
+                htmlElement['span-totalsale'].innerHTML = totalSaleVisual
 
                 const column_one = document.createElement("td")
                 column_one.className = 'sale-column-one'
@@ -120,11 +122,12 @@ const htmlDOMFunctions = {
 
                 tr.ondblclick = () => {
                     totalsale = totalsale - cost
-                    htmlElement['span-totalsale'].innerHTML = totalsale
+                    totalSaleVisual = currencyFormat(totalsale)
+                    htmlElement['span-totalsale'].innerHTML = totalSaleVisual
                     salesTableBody.removeChild(tr)
-                    saleControl[codeFromTable] = saleControl[codeFromTable] + 1
+                    saleControlStock[codeFromTable] = saleControlStock[codeFromTable] + 1
                 }
-                saleControl[codeFromTable] = saleControl[codeFromTable] - 1;
+                saleControlStock[codeFromTable] = saleControlStock[codeFromTable] - 1;
             }
             else {
                 console.log('code is empty right now')

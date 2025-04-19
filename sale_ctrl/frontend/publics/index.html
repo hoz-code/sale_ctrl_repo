@@ -5,78 +5,200 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link type="text/css" rel="stylesheet" href="/src/assets/styles/style.css">
+    <link type="text/css" rel="stylesheet" href="/src/assets/styles/minty.css">
+    <!--<link type="text/css" rel="stylesheet" href="/src/assets/styles/style.css">-->
+    <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">-->
 </head>
 
-<body class="body" id="body">
-    <div style="display: flex; flex-wrap: nowrap; border-color: blue;">
-        <!-- ********************************************************* LEFT **********************************************************-->
-        <div style="flex: 1; min-width: 25%; border: 1px solid green; box-sizing: border-box; padding: 10px;">
-            <form id='forminfo' action="">
-                <label for="input-code">Code</label>
-                <input type="text" id="input-code" name="input-code" data-column-name="code" data-table-stocks="stocks"
-                    data-column-stocks="fkcode" data-table-prices="prices" data-column-prices="fkcode">
-                <br><br>
-                <label for="input-productname">Product</label>
-                <input type="text" id="input-productname" name="input-productname" data-table-name="products"
-                    data-column-name="name"><br><br>
-                <label for="input-stock">Stock</label>
-                <input type="text" id="input-stock" name="input-stock" data-table-name="stocks"
-                    data-column-name="stock"><br><br>
-                <label for="input-price">Price</label>
-                <input type="text" id="input-price" name="input-price" data-table-name="prices"
-                    data-column-name="price"><br><br>
-            </form>
-
-            <button type="button" id="button-save">Save</button>
-            <button type="button" id="button-search">Search</button>
-            <button type="button" id="button-update">Update</button>
-            <button type="button" id="button-delete">Delete</button><br><br>
-
-        </div>
-        <!-- ********************************************************* CENTER **********************************************************-->
-        <div style="flex: 1; min-width: 40%; border: 1px solid black; box-sizing: border-box; padding: 10px;">
-
-            <input type="text" id="search-box" placeholder="Search for names..">
-            <div class="table-avalible-product-container">
-                <table id="available-table-products">
-                    <thead class="class-available-table-products-header" id="available-table-products-header">
-                        <tr>
-                            <th style="width:5%;">CODIGO</th>
-                            <th style="width:80%;">ARTICULO</th>
-                            <th style="width:5%;">CANTIDAD</th>
-                            <th style="width:5%;">VALOR</th>
-                        </tr>
-                    </thead>
-                    <tbody id="available-body-table-products">
-                    </tbody>
-                </table>
+<body id="body">
+    <nav class="mb-1 navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Mila Kids</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-sm-2" type="search" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </div>
         </div>
+    </nav>
+    <!--<div style="display: flex; flex-wrap: nowrap; border-color: blue;">-->
+    <!--<div class="container text-center">-->
+    <div class="container-fluid">
+        <div class="row">
 
-        <!-- *********************************************************  RIGHT **********************************************************-->
-        <div style="flex: 1; min-width: 35%; border: 1px solid black; box-sizing: border-box; padding: 10px;">
+            <!-- ********************************************************* LEFT **********************************************************-->
+            <div class="col">
 
-            <!--<div id="sale-container">Sale Container</div><br>-->
-            <div class="table-sales-product-container">
-                <table id="sales-table-products">
-                    <thead class="class-sales-table-products-header" id="sales-table-products-header">
-                        <tr>
-                            <th style="width:5%;">CODIGO</th>
-                            <th style="width:90%;">ARTICULO</th>
-                            <th style="width:5%;">VALOR</th>
-                        </tr>
-                    </thead>
-                    <tbody id="sales-body-table-products">
-                    </tbody>
-                </table>
+                <div>
+                    <label class="col-form-label mt-4" for="input-code">Codigo</label>
+                    <input type="text" class="form-control" placeholder="Codigo" id="input-code" data-column-name="code"
+                        data-table-stocks="stocks" data-column-stocks="fkcode" data-table-prices="prices"
+                        data-column-prices="fkcode">
+                </div>
+
+                <div>
+                    <label class="col-form-label mt-4" for="input-productname">Item</label>
+                    <input type="text" class="form-control" placeholder="Item" id="input-productname"
+                        data-table-name="products" data-column-name="name">
+                </div>
+
+                <div>
+                    <label class="col-form-label mt-4" for="input-stock">Cantidad</label>
+                    <input type="text" class="form-control" placeholder="Cantidad" id="input-stock"
+                        data-table-name="stocks" data-column-name="stock">
+                </div>
+
+                <div>
+                    <label class="col-form-label mt-4" for="input-price">Precio</label>
+                    <input type="text" class="form-control" placeholder="Precio" id="input-price"
+                        data-table-name="prices" data-column-name="price">
+                </div>
+
+                <button type="button" class="btn btn-primary disabled">Primary</button>
+                <button type="button" class="btn btn-secondary disabled">Secondary</button>
+                <button type="button" class="btn btn-success disabled">Success</button>
+                <button type="button" class="btn btn-info disabled">Info</button>
+                <button type="button" class="btn btn-warning disabled">Warning</button>
+                <button type="button" class="btn btn-danger disabled">Danger</button>
+                <button type="button" class="btn btn-light disabled">Light</button>
+                <button type="button" class="btn btn-dark disabled">Dark</button>
+                <button type="button" class="btn btn-link disabled">Link</button>
+
+                <button type="button" id="button-save">Save</button>
+                <button type="button" id="button-search">Search</button>
+                <button type="button" id="button-update">Update</button>
+                <button type="button" id="button-delete">Delete</button><br><br>
+
+
+                <div>
+                    <form action="">
+                        <label for="formFile" class="form-label mt-4">Default file input example</label>
+                        <input class="form-control" type="file" id="formFile"><br>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
             </div>
-            <span>total: </span><span class="br-blk-thi bk-gr-cl" id="span-totalsale">0</span><br>
-            <button type="button" id="button-confirm">Confirm Sale</button><br><br>
-            <button type="button" id="button-saleclean">Clear Sales</button><br><br><br>
+
+
+            <!-- ********************************************************* CENTER **********************************************************-->
+            <div class="col-6">
+
+                <div class="mb-1 form-floating">
+                    <input type="text" class="form-control" id="search-box" placeholder="Nombre del Producto"
+                        autocomplete="off">
+                    <label for="search-box">Nombre del producto</label>
+                </div>
+
+                <div class="table-avalible-product-container">
+                    <table class="table table-hover" id="available-table-products">
+                        <thead id="available-table-products-header">
+                            <tr>
+                                <th scope="col" style="width:5%;">CODIGO</th>
+                                <th scope="col" style="width:85%;">ARTICULO</th>
+                                <th scope="col" style="width:5%;">CANTIDAD</th>
+                                <th scope="col" style="width:5%;">VALOR</th>
+                            </tr>
+                        </thead>
+                        <tbody id="available-body-table-products">
+                        </tbody>
+
+                    </table>
+                </div>
+
+
+
+            </div>
+
+            <!-- *********************************************************  RIGHT **********************************************************-->
+            <div class="col">
+
+                <!--<div id="sale-container">Sale Container</div><br>-->
+
+                <!--align-middle text-center container-fluid-->
+
+                <div>Lista de ventas</div>
+
+
+
+
+                <div class="table-sales-product-container">
+                    <table class="table table-hover" id="sales-table-products">
+                        <thead class="class-sales-table-products-header" id="sales-table-products-header">
+                            <tr>
+                                <th scope="col" style="width:5%;">CODIGO</th>
+                                <th scope="col" style="width:80%;">ARTICULO</th>
+                                <th scope="col" style="width:15%;">VALOR</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sales-body-table-products">
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+                <span id="span-totalsale" class="lead">Total: </span><span id="span-totalsale" class="lead">$
+                    0,00</span><br>
+                <button id="button-confirm" type="button" class="btn btn-success">Confirmar</button>
+                <button type="button" class="btn btn-warning">Warning</button>
+                <button id="button-saleclean" type="button" class="btn btn-danger">Borrar</button>
+            </div>
+
         </div>
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
     <script type="module" src="/src/pages/index.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>-->
 </body>
 
 </html>
