@@ -22,7 +22,9 @@ const htmlDOMFunctions = {
             salesFromTable.removeChild(salesFromTable.firstElementChild)
             i++;
         }
-        htmlElement['span-totalsale'].innerHTML = 0
+
+        htmlElement['span-totalsale'].innerHTML = '$ 0,00'
+
         let saleControlClean = Object.entries(saleControlStock)
         saleControlClean.forEach((key) => {
             delete saleControlStock[`${key[0]}`]
@@ -135,6 +137,17 @@ const htmlDOMFunctions = {
         } else {
             console.log('code without stock')
         }
+    },
+
+    radioBehavior: (htmlElement) => {
+        console.log(htmlElement)
+        const radioo = document.getElementById('radio-optone')
+        const radiot = document.getElementById('radio-opttwo')
+        const radior = document.getElementById('radio-optthree')
+        console.log(radioo)
+        console.log(radiot)
+        console.log(radior)
+        alert(`${radioo}  1 ${radiot}  2   ${radior}   3`)
     }
 }
 

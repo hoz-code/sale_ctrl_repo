@@ -36,23 +36,22 @@ htmlElements['button-search'].onclick = async () => {
     htmlDOMFunction.showSearch(data, getAllTags())
 }
 
-
 htmlElements['button-save'].onclick = () => htmlFunction.createrow(getAllTags());
 htmlElements['button-delete'].onclick = () => htmlFunction.deleteRowByCode(getAllTags());
 htmlElements['button-update'].onclick = () => htmlFunction.updateRowByCode(getAllTags());
 
 htmlElements['button-confirm'].onclick = () => {
     htmlFunction.totalizeSales(getAllTags());
+    htmlDOMFunctions.radioBehavior(getAllTags())
     setTimeout(() => { htmlDOMFunction.saleclean(getAllTags()) }, 250)
     setTimeout(() => { populateItemTable() }, 500)
+
 }
-
-
 
 
 // DOM Functions
 htmlElements['button-saleclean'].onclick = () => htmlDOMFunction.saleclean(getAllTags());
-
+htmlElements['button-radio'].onclick = () => htmlDOMFunctions.radioBehavior(getAllTags());
 
 //CSS Function
 htmlElements['search-box'].onkeyup = () => cssFunction.searchFilter()

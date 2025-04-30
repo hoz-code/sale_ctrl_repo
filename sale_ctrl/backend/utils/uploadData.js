@@ -1,4 +1,4 @@
-import { db } from '../config/createdb.js';
+import { db } from '../app.js';
 import fs from 'fs';
 import readline from 'readline';
 

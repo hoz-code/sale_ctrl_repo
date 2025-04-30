@@ -1,4 +1,4 @@
-import { db } from '../config/createdb.js';
+import { db } from '../app.js';
 
 const select_columns = (tablename) => {
     return new Promise((resolve, rejected) => {
