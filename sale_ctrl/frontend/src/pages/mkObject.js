@@ -75,7 +75,9 @@ const formatDataToFetch = {
         }
 
         return sqlObject
-    }
+    },
+
+    
 }
 
 export { formatDataToFetch }

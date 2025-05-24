@@ -95,7 +95,6 @@ const htmlFunctions = {
         }
     },
 
-
     totalizeSales: async (allElements) => {
         //console.log(reloadTableItem)
         try {
@@ -113,6 +112,38 @@ const htmlFunctions = {
             //browsermessage.show(error);
         }
     },
+
+    massiveDataInsert: async (fileCsv) => {
+        try {
+            //const fetchsettings = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: fileCsv };
+            const fetchsettings = { method: 'POST', body: fileCsv };
+            let responsefetch = await fetch("http://localhost:8080/api/product/product/masivecreate", fetchsettings);
+            if (!responsefetch.ok) {
+                throw new Error(`Response status from fetch: ${responsefetch.status}`);
+            }
+            const json = await responsefetch.json();
+            console.log(json);
+        }
+        catch (error) {
+            console.log(error.message);
+            //browsermessage.show(error);
+        }
+    },
+
+    downloadCsvData: async () => {
+        try {
+            const fetchsettings = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
+            let responsefetch = await fetch("http://localhost:8080/api/product/product/csv", fetchsettings);
+            if (!responsefetch.ok) {
+                throw new Error(`Response status from fetch: ${responsefetch.status}`);
+            }
+            const json = await responsefetch.json();
+            return json
+        }
+        catch (error) {
+
+        }
+    }
 }
 
 export { htmlFunctions };

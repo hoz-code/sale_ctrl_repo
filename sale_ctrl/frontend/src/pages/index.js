@@ -40,9 +40,10 @@ htmlElements['button-save'].onclick = () => htmlFunction.createrow(getAllTags())
 htmlElements['button-delete'].onclick = () => htmlFunction.deleteRowByCode(getAllTags());
 htmlElements['button-update'].onclick = () => htmlFunction.updateRowByCode(getAllTags());
 
+
 htmlElements['button-confirm'].onclick = () => {
     htmlFunction.totalizeSales(getAllTags());
-    htmlDOMFunctions.radioBehavior(getAllTags())
+    //htmlDOMFunctions.radioBehavior(getAllTags())
     setTimeout(() => { htmlDOMFunction.saleclean(getAllTags()) }, 250)
     setTimeout(() => { populateItemTable() }, 500)
 
@@ -51,7 +52,13 @@ htmlElements['button-confirm'].onclick = () => {
 
 // DOM Functions
 htmlElements['button-saleclean'].onclick = () => htmlDOMFunction.saleclean(getAllTags());
-htmlElements['button-radio'].onclick = () => htmlDOMFunctions.radioBehavior(getAllTags());
+htmlElements['button-uploadfile'].onclick = () => {
+    const fileCsv = htmlDOMFunction.getFileContent(getAllTags());
+    console.log(fileCsv)
+    htmlFunction.massiveDataInsert(fileCsv)
+}
+
+htmlElements['button-downloadfile'].onclick = () => htmlFunction.downloadCsvData();
 
 //CSS Function
 htmlElements['search-box'].onkeyup = () => cssFunction.searchFilter()

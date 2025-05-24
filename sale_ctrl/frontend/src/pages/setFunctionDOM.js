@@ -148,6 +148,18 @@ const htmlDOMFunctions = {
         console.log(radiot)
         console.log(radior)
         alert(`${radioo}  1 ${radiot}  2   ${radior}   3`)
+    },
+
+    getFileContent: (htmlElement) => {
+        const fileInput = htmlElement['input-file']
+        console.log(fileInput.files)
+        if (fileInput.files.length === 0) {
+            alert('Seleccione un archivo')
+            return;
+        }
+        const formData = new FormData()
+        formData.append('csvFile', fileInput.files[0])
+        return formData
     }
 }
 

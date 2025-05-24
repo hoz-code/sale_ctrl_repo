@@ -12,7 +12,7 @@ const createTable = {
 
     tableStocks: (db) => {
         db.run(`CREATE TABLE IF NOT EXISTS stocks 
-            (fkcode INT, stock INT NOT NULL, FOREIGN KEY(fkcode) REFERENCES products(code));`, (err) => {
+            (fkcode INT UNIQUE, stock INT NOT NULL, FOREIGN KEY(fkcode) REFERENCES products(code));`, (err) => {
             if (!err) {
                 console.log('Table created successfully');
             } else {
@@ -23,7 +23,7 @@ const createTable = {
 
     tablePrices: (db) => {
         db.run(`CREATE TABLE IF NOT EXISTS prices 
-            (fkcode INT, price INT NOT NULL, FOREIGN KEY(fkcode) REFERENCES products(code));`, (err) => {
+            (fkcode INT UNIQUE, price INT NOT NULL, FOREIGN KEY(fkcode) REFERENCES products(code));`, (err) => {
             if (!err) {
                 console.log('Table created successfully');
             } else {

@@ -1,5 +1,7 @@
 import { db } from '../app.js';
 
+
+
 const sqlActions = {
 
     createRow: (dataToCreate, sqlAnswer) => {
@@ -58,6 +60,7 @@ const sqlActions = {
             });
         });
     },
+
     selectAllRows: (sqlAnswer) => {
         const sqlstatement = `SELECT * FROM products
         INNER JOIN stocks ON products.code = stocks.fkcode
@@ -71,6 +74,22 @@ const sqlActions = {
         };
         db.all(sqlstatement, sqlcallback);
     },
+
+    downloadcsv: (sqlAnswer) => {
+        const sqlstatement = `SELECT products.code, products.name, stocks.stock, prices.price 
+        FROM products 
+        INNER JOIN stocks ON products.code = stocks.fkcode 
+        INNER JOIN prices ON products.code = prices.fkcode;`;
+        const sqlcallback = (err, rows) => {
+            if (!err) {
+                sqlAnswer(null, rows);
+            } else {
+                sqlAnswer(err.message, null);
+            }
+        };
+        db.all(sqlstatement, sqlcallback);
+    },
+
     selectIdRow: (req, sqlAnswer) => {
         const code = req.id
         const sqlStatementProduct =
@@ -174,6 +193,38 @@ const sqlActions = {
             })
         })
         sqlAnswer(null, { "res": "All rows are ok" });
+    },
+    createMasiveRows: (dataToCreate, sqlAnswer) => {
+        console.log('dataCreaate')
+        console.log(dataToCreate)
+        const lines = dataToCreate.split('\n');
+        console.log(lines)
+        lines.forEach(line => {
+            const [id, name, stock, price] = line.split(',')
+            const sqlStatementProducts = `INSERT INTO products (code , name) VALUES(?, ?)`;
+            const sqlStatementStocks = `INSERT INTO stocks (fkcode , stock) VALUES(?, ?)`;
+            const sqlStatementPrices = `INSERT INTO prices (fkcode, price) VALUES(?, ?)`;
+
+            db.serialize(() => {
+                db.run(sqlStatementProducts, [id, name], (err) => {
+                    if (err) {
+                        console.error('Error inserting data:', err.message);
+                    }
+                });
+                db.run(sqlStatementStocks, [id, stock], (err) => {
+                    if (err) {
+                        console.error('Error inserting data:', err.message);
+                    }
+                });
+                db.run(sqlStatementPrices, [id, price], (err) => {
+                    if (err) {
+                        console.error('Error inserting data:', err.message);
+                    }
+                });
+            })
+
+        });
+        sqlAnswer(null, { "message": "File uploaded successfully!" })
     }
 }
 

@@ -8,6 +8,7 @@ const rl = readline.createInterface({ input: fileStream, crlfDelay: Infinity, })
 
 rl.on('line', (line) => {
     const [id, name, stock, price] = line.split(',');
+    
     const sqlStatementProducts = `INSERT INTO products (code , name) VALUES(?, ?)`;
     const sqlStatementStocks = `INSERT INTO stocks (fkcode , stock) VALUES(?, ?)`;
     const sqlStatementPrices = `INSERT INTO prices (fkcode, price) VALUES(?, ?)`;
